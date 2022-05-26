@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="./agl.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular-resource.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/restangular/1.6.1/restangular.js"></script>
+    <title>Document</title>
+</head>
+<body>
+
+ <div ng-controller="IndexCtrl">
+    Film Titles from Studio Ghibli: <br>
+    <ul>
+        <li ng-repeat="title in movies">{{title.title}} <br></li>
+    </ul>
+ </div>
+    <script>
+        var app=angular.module('app',["restangular"]).config(function(RestangularProvider){
+            RestangularProvider.setBaseUrl('https://ghibliapi.herokuapp.com');
+        });
+        app.controller('IndexCtrl',function($scope,Restangular){
+            var data =
+            Restangular.all('/films').getList().then(function(result){
+                $scope.movies=result;
+            });
+        });
+        
+    </script>
+</body>
+</html>
