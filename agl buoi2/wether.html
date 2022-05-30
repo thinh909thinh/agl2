@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <script src="./agl.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="./wether.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div ng-controller="weather">
+        <h2>Ha noi Viet nam</h2>
+        <div style="float:left"><img src="{{img_url}}" alt=""></div>
+        <h3>Curent:{{current | number: 1}}°C</h3>
+       min:{{temp_min|number:1}}°C ,max:{{temp_max|number:1}}°C
+       <h3>wind:{{wind_speed}}km</h3>
+    </div>
+</body>
+</html>

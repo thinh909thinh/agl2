@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="Angular/angular.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body ng-app="single-page-app">
+<div ng-controller="SPAController">
+    <div>
+        <ul>
+            <li><a href="#/">Home<span> (current page)</span></a></li>
+            <li><a href="#/about">About us</a></li>
+            <li><a href="#/tutorial">Tutorial</a></li>
+        </ul>
+    </div>
+    <div style="background-color: lightgreen" ng-view></div>
+    <br><br><br>
+    <hr>
+    <div style="padding-left: 50px; padding-right: 100px">
+        {{message}}
+    </div>
+</div>
+<div id="/about" style="padding-left: 50px; padding-right: 100px">
+    <h1>About us Page</h1>
+    <p>This is simple AngularJS ng-view and ngRoute tutorial to demonstrate single page Web application development</p>
+</div>
+<div id="/" style="padding-left: 50px; padding-right: 100px">
+    <h1>Home Page</h1>
+    This is a Simple SPA Demo
+</div>
+<div id="/tutorial" style="padding-left: 50px; padding-right: 100px">
+    <h1>Tutorial Page</h1>
+    <p>This is basic simple SPA tutorial</p>
+</div>
+<script>
+    var app = angular.module('single-page-app', ['ngRoute']);
+    app.config(function ($routeProvider){
+        $routeProvider
+        .when('/',{
+            templateUrl: 'home'
+        })
+            .when('/about',{
+                templateUrl: 'about'
+            })
+            .when('/tutorial',{
+                templateUrl: 'tutorial'
+            });
+    });
+    app.controller('SPAController', function ($scope){
+        $scope.message="Single Page Application";
+    });
+</script>
+</body>
+</html>

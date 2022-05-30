@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="Angular/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="mainApp" ng-controller="CalcController">
+    <p>Enter a number: <input type="number" ng-model="number"></p>
+    <button ng-click="square()">Square</sup></button>
+    <p>Result: {{result}}</p>
+</div>
+<script>
+    var mainApp = angular.module("mainApp",[]);
+    mainApp.service('MyService', function (){
+        this.square = function (a){
+            return a * a;
+        }
+    });
+    mainApp.controller('CalcController', function ($scope, MyService){
+        $scope.square = function (){
+            $scope.result = MyService.square($scope.number);
+        }
+    });
+</script>
+</body>
+</html>
